@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#43AC43" >
+
+        <ImageButton
+            android:id="@+id/ib_minebank_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/back_index" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/ib_minebank_left"
+            android:text="添加银行卡"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#fff" >
+
+            <TextView
+                android:id="@+id/tv_mybank_kind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="业务所属"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/tv_mybank_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/click_button_nomal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="公银行卡"
+                android:textColor="#fff"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/tv_mybank_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_mybank_button2"
+                android:background="@drawable/click_button_select"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="个人银行卡"
+                android:textColor="#fff"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e0e0e0" />
+
+        <RelativeLayout
+            android:id="@+id/rl_minebank_choose"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:clickable="true"
+            android:focusable="true"
+            android:descendantFocusability="blocksDescendants" >
+
+            <TextView
+                android:id="@+id/tv_minebank_openaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="开户银行"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_minebank_mykind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_minebank_openaccount"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_minebank_openaccount"
+                android:background="@null"
+                android:focusable="false" />
+
+            <ImageView
+                android:id="@+id/iv_minebank_choose_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mine_right_jiantou"
+                android:focusable="false" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e0e0e0" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#fff" >
+
+            <TextView
+                android:id="@+id/tv_minebank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="开户姓名"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_minebank_myname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_minebank_name"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_minebank_name"
+                android:background="@null"
+                android:ems="12"
+                android:hint="请输入本人姓名" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e0e0e0" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#fff" >
+
+            <TextView
+                android:id="@+id/mybank_tv_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="银行卡号"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_minebank_mycard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/mybank_tv_card"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/mybank_tv_card"
+                android:background="@null"
+                android:ems="12"
+                android:hint="请输入卡号" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom" >
+
+            <Button
+                android:id="@+id/btn_minebank_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="确 定"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

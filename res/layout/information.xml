@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/information_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/information_ly_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#43AC43"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="小微"
+            android:textColor="#fff"
+            android:textSize="22dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/information_ly_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="#43ac43" >
+
+        <Button
+            android:id="@+id/information_send_msg"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_edit_normal"
+            android:text="发送"
+            android:layout_marginRight="5dp" />
+
+        <EditText
+            android:id="@+id/information_input_msg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/information_send_msg"
+            android:background="@drawable/login_edit_normal"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/information_listview_msgs"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/information_ly_bottom"
+        android:layout_below="@id/information_ly_top"
+        android:divider="@null"
+        android:dividerHeight="5dp" >
+    </ListView>
+
+</RelativeLayout>

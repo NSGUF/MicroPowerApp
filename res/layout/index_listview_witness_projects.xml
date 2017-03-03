@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <com.example.micropowerapp.RoundImageView
+                android:id="@+id/listview_witness_head"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/listview_witness_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="小明"
+                android:textColor="#5D5D5D" />
+
+            <TextView
+                android:id="@+id/listview_witness_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3小时前"
+                android:textColor="#ABABAB"
+                android:textSize="11dp" />
+
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/listview_witness_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="助力儿童一对一"
+                android:textColor="#171717"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/listview_witness_descrip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="位我们的祖国的花朵送上一份爱心，让他们不再挨饿，有良好的学习氛围"
+                android:textColor="#ABABAB"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/listview_witness_photo"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:numColumns="3" >
+        </GridView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#EEEEEE" >
+    </LinearLayout>
+
+</LinearLayout>

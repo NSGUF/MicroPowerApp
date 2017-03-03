@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/report_layout_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#43AC43"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/report_image_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:padding="5dp"
+            android:src="@drawable/back_index" />
+
+        <TextView
+            android:id="@+id/report_title_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="举报"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/report_edit"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:ems="10"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        android:textColorHint="#CDCDCE" >
+    </EditText>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="3dp"
+        android:background="#E6E6E6" />
+
+    <EditText
+        android:id="@+id/report_num"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/report_edit"
+        android:background="@null"
+        android:ems="10"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        android:textColorHint="#CDCDCE" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="3dp"
+        android:background="#E6E6E6" />
+
+    <EditText
+        android:id="@+id/report_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="top"
+        android:minLines="7"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        android:textColorHint="#CDCDCE" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="3dp"
+        android:background="#E6E6E6" />
+
+    <TextView
+        android:id="@+id/report_tp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/report_text"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="举报相关图片"
+        android:textColor="#888888"
+        android:textSize="12dp" />
+
+    <GridView
+        android:id="@+id/report_gridview"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/report_tp"
+        android:layout_marginLeft="5dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="5dp" >
+    </GridView>
+
+</LinearLayout>

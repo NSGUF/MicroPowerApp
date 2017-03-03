@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="zhuming">项目内容和项目图片禁止透漏任何联系方式和银行卡等收款信息，包括但不限于手机号码，座机号码。微信号，支付宝账号，银行卡号等,违反以上规定，项目验证和提现申请均不予通过。</string>
+    <string name="zhuming2">请选择最具代表性的图片作为封面图片默认第一章，并尽可能多上传图片，提高项目的真实性和感染力.</string>
+    <string name="zhuming3">已阅读并同意《发起人承诺书》</string>
+    <string name="zhuming4">项目发起人资格
+                             18周岁以上中华人民共和国公民
+                                                           拥有能够在中国地区接受人民币汇款的银行卡或者支付宝账号，提供必要的身份证证和资质认证，
+                                                           根据项目内容有可能包含但不限于身份证，护照，学历证明等。其他根据项目发起执行需求相关的必须条件
+                             18周岁以下的中华人民共和国公民，可经由符合以上条款具有资格的家长或老师代为发起和经营创意项目，
+                                                         非洲华人民共和国公民与创建项目须通过邮件方式递交申请，经批准可通过具有合法资质的代理机构进行项目发起</string>
+    <string name="zhuming5">项目达到目标金额后项目自动完成若想继续筹款需要在达到目标金额前修改。若急需使用，筹款可以选择项目管理提前结束，申请提前结束。将账户余额提现到银行卡，将扣除提现总额的2%该费用为平台服务费。完成项目验证方可提现可在项目管理，项目验证进行后续验证。</string>
+    <string name="zhuming6">发起人需对其提交资料的真实性负责，不得虚构事实，或者隐瞒真相，平台将重点打击违法诈骗行为涉及刑事责任的平台将主动移交相关资料至公安机关立案。中华人民共和国刑法，诈骗公私财物，数额较大的，处三年以下有期徒刑，拘役或者管制，并处或者单处罚金数额巨大，或者有其他严重情节的，处三年以上十年以下有期徒刑，并处罚金数额特别巨大，或者有其他特别严重情节的，处十年以上有期徒刑或者无期徒刑。</string>
+    <string name="zhuming7">项目发起人已承诺涉及本项目的文字图片证明等相关信息完全真实有效，且不存在未经他人授权冒用他人名义进行求助的行为，本人收到的全部捐助，款项将直接用于被救助人的救助不另行挪作他用若发起人存在违反上述承诺的行为愿自行承担全部法律责任。</string>
+    <string name="zhuming8">捐赠物品需进行消毒，捐赠人保证被捐物品对人体无毒无害。被捐物品将在七个工作日内送达受捐者手上。平台将抽取2%的回报金额做平台运营费用。</string>
+    <string name="app_name">MicroPowerApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_seach">SeachActivity</string>
+    <string name="title_activity_do_help">DoHelpActivity</string>
+    <string name="title_activity_show_image">ShowImageActivity</string>
+    <string name="title_activity_show_image_fragment">ShowImageFragmentActivity</string>
+    <string name="title_activity_show_image_pager">ShowImagePagerActivity</string>
+    <string name="sdcard_image">/mnt/sdcard/test/</string>
+    <string name="title_activity_mine_set">MineSetActivity</string>
+
+    <string-array name="title">
+        <item>一对一儿童捐助</item>
+        <item>我要捐赠</item>
+        <item>求助捐赠</item>
+        <item>分享见证</item>
+    </string-array>
+    <string-array name="introduction">
+        <item>献出一片爱心</item>
+        <item>捐出别人需要的东西</item>
+        <item>我要求助别人的帮助</item>
+        <item>见证收到的帮助</item>
+    </string-array>
+
+    <integer-array name="image">
+        <item>@drawable/launch_iamge_a</item>
+        <item>@drawable/launch_image_b</item>
+        <item>@drawable/launch_image_c</item>
+        <item>@drawable/launch_jubao</item>
+    </integer-array>
+
+    <string-array name="spingarr">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="spinclass">
+        <item>书籍</item>
+        <item>玩具</item>
+        <item>衣物</item>
+        <item>生活用品</item>
+    </string-array>
+    <string-array name="spinclass1">
+        <item>手机</item>
+        <item>玩具</item>
+        <item>衣物</item>
+        <item>生活用品</item>
+    </string-array>
+
+    <string name="title_activity_help">HelpActivity</string>
+
+    <!-- 图片浏览 -->
+    <string name="only_choose_num">超出可选图片张数</string>
+    <string name="finish">完成</string>
+    <string name="invalidSD">sdcard无效或没有插入！</string>
+    <string name="photo">选择相册</string>
+    <string name="album">相册</string>
+    <string name="preview">预览</string>
+    <string name="unfinished">完成</string>
+    <string name="camera_cancel">取消</string>
+    <string name="no_photo">相册没有图片</string>
+
+    <drawable name="selected_btn_bg">#63ff63</drawable>
+    <drawable name="normal_btn_bg">#999</drawable>
+
+    <string-array name="itemtitles">
+        <item>建设银行</item>
+        <item>工商银行</item>
+        <item>农业银行</item>
+        <item>交通银行</item>
+        <item>中国银行</item>
+        <item>光大银行</item>
+        <item>招商银行</item>
+        <item>中信银行</item>
+        <item>民生银行</item>
+        <item>兴业银行</item>
+        <item>广发银行</item>
+        <item>浦发银行</item>
+        <item>平安银行</item>
+        <item>邮政银行</item>
+    </string-array>
+    <!-- 我的发起  用户名 发起时间 标题   具体内容 -->
+    <integer-array name="itemimages">
+        <item>@drawable/jianhang1</item>
+        <item>@drawable/gongshang2</item>
+        <item>@drawable/nongye3</item>
+        <item>@drawable/jiaotong4</item>
+        <item>@drawable/china5</item>
+        <item>@drawable/guangda6</item>
+        <item>@drawable/zhaoshang7</item>
+        <item>@drawable/zhongxin8</item>
+        <item>@drawable/minsheng9</item>
+        <item>@drawable/xingye10</item>
+        <item>@drawable/guangfa11</item>
+        <item>@drawable/pufa12</item>
+        <item>@drawable/pingan13</item>
+        <item>@drawable/youzheng14</item>
+    </integer-array>
+
+    <string-array name="myusernames">
+        <item>轩言幂语1</item>
+        <item>轩言幂语2</item>
+        <item>轩言幂语3</item>
+        <item>轩言幂语4</item>
+        <item>轩言幂语5</item>
+        <item>轩言幂语6</item>
+        <item>轩言幂语7</item>
+        <item>轩言幂语8</item>
+        <item>轩言幂语9</item>
+        <item>轩言幂语10</item>
+        <item>轩言幂语11</item>
+    </string-array>
+    <string-array name="mypublishtimes">
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+        <item>2天前</item>
+    </string-array>
+    <string-array name="mytitles">
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+        <item>大爱无疆 人间有爱</item>
+    </string-array>
+    <string-array name="mydescribes">
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+        <item>一个来自深山里的呼唤，帮助贫困山区孩子们和助教圆梦大师赛......</item>
+    </string-array>
+    <!-- 我的捐赠   发起时间 标题   具体内容 -->
+    <string-array name="mydonatepublishtimes">
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+        <item>10天前</item>
+    </string-array>
+    <string-array name="mydonatetitles">
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+        <item>我想有个美好童年</item>
+    </string-array>
+    <string-array name="mydonatedescribes">
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+        <item>哥哥姐姐们，我也想要读书，也想拥有和普通小朋友一样的童年，我需要你们的......</item>
+    </string-array>
+    <!-- 我的见证  发起时间 标题   具体内容 -->
+    <string-array name="mywitnesspublishtimes">
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+        <item>1个小时前</item>
+    </string-array>
+    <string-array name="mywitnesstitles">
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+        <item>大恩大德 无以回报</item>
+    </string-array>
+    <string-array name="mywitnessdecribes">
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+        <item>感恩！感动！感谢我们在天上的父，借着你们给孩子们捐赠物品，感动img......</item>
+    </string-array>
+
+    <string name="title_activity_seach_result">SeachResultActivity</string>
+
+</resources>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.micropowerapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".IndexProjectDescripActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".SeachActivity"
+            android:label="@string/title_activity_seach" >
+        </activity>
+        <activity
+            android:name=".DoHelpActivity"
+            android:label="@string/title_activity_do_help" >
+        </activity>
+        <activity
+            android:name=".ShowImageActivity"
+            android:label="@string/title_activity_show_image" >
+        </activity>
+        <activity
+            android:name=".LaunchActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="Help" >
+        </activity>
+        <activity
+            android:name=".SelectPicPopupWindow"
+            android:label="Select"
+            android:theme="@style/MyDialogStyleBottom" >
+        </activity>
+        <activity
+            android:name=".SeekActivity"
+            android:label="Seek" >
+        </activity>
+        <activity
+            android:name=".WantActivity"
+            android:label="Want" >
+        </activity>
+        <activity
+            android:name=".AlbumActivity"
+            android:label="Album" >
+        </activity>
+        <activity
+            android:name=".GalleryActivity"
+            android:label="Gallery" >
+        </activity>
+        <activity
+            android:name=".Report"
+            android:label="Report" >
+            
+        </activity>
+        <activity
+            android:name=".ImageFile"
+            android:label="Image" >
+        </activity>
+        <activity
+            android:name=".ShareActivity"
+            android:label="Share" >
+        </activity>
+        <activity
+            android:name="com.launch.bean.ShowAllPhoto"
+            android:label="ShowAllPhoto" >
+        </activity>
+        <activity android:name=".CityChoose2Activity" >
+        </activity>
+        <activity android:name=".CityChooseActivity" >
+        </activity>
+        <activity android:name=".MineLaunchActivity" >
+        </activity>
+        <activity android:name=".MineDonateActivity" >
+        </activity>
+        <activity android:name=".MineHandActivity" >
+        </activity>
+        <activity android:name=".MineBankActivity" >
+        </activity>
+        <activity android:name=".MineWalletActivity" >
+        </activity>
+        <activity android:name=".MineWitnessActivity" >
+        </activity>
+        <activity android:name=".MineHelpActivity" >
+        </activity>
+        <activity android:name=".VolunteerActivity" >
+        </activity>
+        <activity android:name=".MineTwoCodeActivity" >
+        </activity>
+        <activity android:name=".MineAdviceActivity" >
+        </activity>
+        <activity android:name=".MineWalletLookActivity" >
+        </activity>
+        <activity android:name=".MineMessageActivity" >
+        </activity>
+        <activity android:name=".LoginActivity" >
+        </activity>
+        <activity android:name=".MineThirdbandActivity" >
+        </activity>
+        <activity android:name=".MicroPowerStartActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MineAddressActivity" >
+        </activity>
+        <activity android:name=".MineDetailAddressActivity" >
+        </activity>
+        <activity android:name="com.mine.bean.AddressChooseActivity" >
+        </activity>
+        <activity
+            android:name=".MineSetActivity"
+            android:label="@string/title_activity_mine_set" >
+        </activity>
+        <activity android:name=".MineSetAdviceActivity" >
+        </activity>
+        <activity android:name=".MineBankChooseActivity" >
+        </activity>
+        <activity android:name=".MineWalletWithdrawActivity" >
+        </activity>
+        <activity android:name=".MineSetAboutActivity" >
+        </activity>
+        <activity android:name=".VolunteerApplyActivity" >
+        </activity>
+        <activity android:name=".MineSendWitnessActivity" >
+        </activity>
+        <activity android:name=".MineLaunchItemDetailActivity" >
+        </activity>
+        <activity android:name=".MineHandItemDetailActivity" >
+        </activity>
+        <activity android:name=".MineDonateItemDetailActivity" >
+        </activity>
+        <activity android:name=".MineWitnessItemDetailActivity" >
+        </activity>
+        <activity
+            android:name=".SeachResultActivity"
+            android:label="@string/title_activity_seach_result" >
+        </activity>
+    </application>
+
+</manifest>

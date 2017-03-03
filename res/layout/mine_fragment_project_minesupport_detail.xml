@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="TA的支持者"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <com.mine.bean.CircleImageView
+            android:id="@+id/mine_hand_headimg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/head_image" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/mine_hand_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="霍霍支持了2.00元" />
+
+            <TextView
+                android:id="@+id/mine_hand_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2分钟前"
+                android:textColor="#999999"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e0e0e0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <com.mine.bean.CircleImageView
+            android:id="@+id/mine_hand_headimg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/x1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/mine_hand_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="善心善言善行支持了5.00元" />
+
+            <TextView
+                android:id="@+id/mine_hand_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2分钟前"
+                android:textColor="#999999"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

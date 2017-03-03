@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="440dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:background="@drawable/background_launch" >
+
+        <TextView
+            android:id="@+id/jump_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:textColor="#1A1A1A"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/jump_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/jump_title"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#A2A2A2"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/jump_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/background_button_div"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="我知道了"
+            android:textColor="#FFFFFF"
+            android:textSize="13dp" />
+    </RelativeLayout>
+
+</LinearLayout>
