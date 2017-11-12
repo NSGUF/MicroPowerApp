@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +127,13 @@ public class DonationProjectsAdapter extends BaseAdapter {
 		holder.textTime.setText(projects.getTime());
 
 		ArrayList<String> photos = projects.getListImage();
+		for(int i=0;i<photos.size();i++){
+			Log.e("Donation photos的值： ", photos.get(i));
+		}
 		ArrayList<String> minPhotos = projects.getListMinImage();
+		for(int i=0;i<photos.size();i++){
+			Log.e("Donation minphotos的值： ", photos.get(i));
+		}
 		MyPhotoAdapter photoAdapter = new MyPhotoAdapter(context, photos,
 				minPhotos);
 		holder.gridListImage.setAdapter(photoAdapter);

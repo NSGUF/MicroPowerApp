@@ -1,88 +1,79 @@
 package com.example.micropowerapp;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
-
-import android.app.Activity;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.MediaStore.MediaColumns;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.SpannedString;
 import android.text.format.DateFormat;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.micropowerapp.R;
+import com.example.micropowerapp.adapter.UploadImageAdapter;
 import com.example.micropowerapp.bean.MyLinearLayout;
-import com.king.photo.util.FileUtils;
-import com.king.photo.util.ImageItem;
-import com.king.photo.util.PublicWay;
-import com.king.photo.util.Res;
-import com.launch.bean.DbService;
+import com.example.micropowerapp.utils.ImageUtils;
 import com.launch.bean.Donation;
-import com.launch.bean.GridAdapter;
 import com.launch.bean.MyAlertDialog;
+import com.mircolove.tomcat.Constant;
+import com.mircolove.tomcat.HttpUploadUtil;
 
-public class WantActivity extends Activity {
+public class WantActivity extends BaseActivity {
 	private TextView begintime_text;
 	private TextView tv;
 	private MyAlertDialog mad;
-	private GridView gridview;
-	private GridAdapter gridadapter;
 	public static Bitmap bimap;
-	private View parentView;
-	private PopupWindow pop;
-	private LinearLayout ll_popup;
-	private DbService dbs;
 	private TextView donationOpenDate;
 	private Spinner donationRaiseGoods;
 	private EditText donationBackMoney;
 	private EditText donationTitle;
 	private EditText donationDetail;
 	private static Donation donation;
-	private String s;
-	private AlbumActivity aa;
-	private SharedPreferences sp;
 	int ss, a;
-	private Editor edit;
 	private TextView tvTiaokuan;
     private ScrollView sv;
     private MyLinearLayout se;
-
+    //需要上传的图片路径
+    private LinkedList<String> dataList=new LinkedList<String>();
+    private GridView uploadGridView;
+    private UploadImageAdapter adapter;
+    Handler hd;
+    String openDate;
+    String backMoney;
+    String title;
+    String detail;
+    String raiseGoods;
+    final Map<String, File> files=new HashMap<String,File>();
+    final String url=Constant.aURL+"/microLoveWant.action";
+    String iphoneID="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -90,15 +81,12 @@ public class WantActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.launch_activity_want);
 
-		Res.init(this);
-		bimap = BitmapFactory.decodeResource(getResources(),
-				R.drawable.icon_addpic_unfocused);
-		PublicWay.activityList.add(this);
-		parentView = getLayoutInflater().inflate(R.layout.launch_activity_want,
-				null);
-		setContentView(parentView);
-
-		Init();
+		uploadGridView=(GridView) findViewById(R.id.want_grid_upload_pictures);
+		dataList.addLast(null);// 初始化第一个添加按钮数据
+		adapter = new UploadImageAdapter(this, dataList,uploadGridView);
+		uploadGridView.setAdapter(adapter);	
+		uploadGridView.setOnItemClickListener(mItemClick);
+		uploadGridView.setOnItemLongClickListener(mItemLongClick);
 		Intent intent = getIntent();
 		int alertFlag = intent.getIntExtra("AlertFlag", 0);
 		if (alertFlag == 0) {
@@ -106,7 +94,7 @@ public class WantActivity extends Activity {
 			ad.setTitle("项目发起须知");
 			ad.setMessage(R.string.zhuming6);
 		}
-		sv=(ScrollView) findViewById(R.id.help_scrollview3);
+		sv=(ScrollView) findViewById(R.id.want_scrollview3);
 		se=(MyLinearLayout) findViewById(R.id.help_scrollview4);
 		donationOpenDate = (TextView) findViewById(R.id.want_text_begintime);
 		donationBackMoney = (EditText) findViewById(R.id.want_edit_backmoney);
@@ -125,6 +113,7 @@ public class WantActivity extends Activity {
 								R.array.spingarr);
 						ss = Integer.parseInt(number[position]);
 						a = position;
+						//Log.e("物品分类得值",donationRaiseGoods.getSelectedItem().toString());
 
 					}
 
@@ -183,54 +172,6 @@ public class WantActivity extends Activity {
 		            }
 		        }
 		    });
-		sp = getSharedPreferences("Info", Context.MODE_PRIVATE);
-		donationOpenDate.setText(sp.getString("time", "请选择"));
-		donationRaiseGoods.setSelection(sp.getInt("class", 0));
-		donationBackMoney.setText(sp.getString("money", ""));
-		donationTitle.setText(sp.getString("title", ""));
-		donationDetail.setText(sp.getString("detail", ""));
-		gridview = (GridView) findViewById(R.id.want_gridview);
-		gridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
-		gridadapter = new GridAdapter(this,gridview);
-		//gridadapter.update();
-		gridview.setAdapter(gridadapter);
-		gridview.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				if (arg2 == aa.tempSelectBitmap.size()) {
-					ll_popup.startAnimation(AnimationUtils.loadAnimation(
-							WantActivity.this, R.anim.push_bottom_in));
-					pop.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-					new Thread(new Runnable() {
-						@Override
-						public void run() {
-							sp = getSharedPreferences("Info",
-									Context.MODE_PRIVATE);
-							edit = sp.edit();
-							edit.putString("time", donationOpenDate.getText()
-									.toString());
-							edit.putInt("class", a);
-							edit.putString("money", donationBackMoney.getText()
-									.toString());
-							edit.putString("title", donationTitle.getText()
-									.toString());
-							edit.putString("detail", donationDetail.getText()
-									.toString());
-							edit.commit();
-						}
-					}) {
-					}.start();
-
-				} else {
-					Intent intent = new Intent(WantActivity.this,
-							GalleryActivity.class);
-					intent.putExtra("position", "1");
-					intent.putExtra("ID", arg2);
-					startActivity(intent);
-				}
-			}
-		});
 		tvTiaokuan=(TextView) findViewById(R.id.launch_want_tiaokuan);
 		tvTiaokuan.setOnClickListener(new OnClickListener() {
 			
@@ -254,167 +195,113 @@ public class WantActivity extends Activity {
 					Toast.makeText(WantActivity.this, "请完善信息",
 							Toast.LENGTH_SHORT).show();
 				} else {
-					mad = new MyAlertDialog(WantActivity.this);
-					mad.setMessage(R.string.zhuming5);
-					mad.setTitle("项目发起成功");
-					dbs = new DbService(WantActivity.this);
-					dbs.CreateDb();
-					donation = new Donation();
-					donation.setDonationId("donation_id" + dbs.getCount());
-					donation.setDonationOpenDate(donationOpenDate.getText()
-							.toString());
-					donation.setDonationRaiseGoods(s);
-					donation.setDonationBackMoney(donationBackMoney.getText()
-							.toString());
-					donation.setDonationTitle(donationTitle.getText()
-							.toString());
-					donation.setDonationDetail(donationDetail.getText()
-							.toString());
-					donation.setDonationImage(GridAdapter.getPath());
-					//Log.d("锟斤拷锟�", donationDetail.getText().toString());
-					System.out.println(donation.toString());
-					dbs.insertData();
-					
-					donationOpenDate.setText("请选择");
-					donationRaiseGoods.setSelection(0);
-					donationBackMoney.setText("");
-					donationTitle.setText("");
-					donationDetail.setText("");
+					openDate=donationOpenDate.getText().toString().trim();
+					backMoney=donationBackMoney.getText().toString().trim();
+					title=donationTitle.getText().toString().trim();
+					detail=donationDetail.getText().toString().trim();
+					raiseGoods=donationRaiseGoods.getSelectedItem().toString().trim();
+					iphoneID="15279194818";
+					final Map<String, String> params=new HashMap<String,String>();
+					params.put("openDate",openDate );
+					params.put("backMoney",backMoney );
+					params.put("title",title );
+					params.put("detail",detail );
+					params.put("raiseGoods",raiseGoods );
+					params.put("donation_select_need_or_dona", "1");
+					params.put("iphoneID", iphoneID);
+					new Thread(){
+						public void run() {
+							int msgStr=0;
+							try {
+								msgStr=HttpUploadUtil.postWithFile(url, params, files);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							Bundle b=new Bundle();
+							b.putInt("msg", msgStr);
+							Message msg=new Message();
+							msg.setData(b);
+							msg.what=Constant.ADDWANT;
+							hd.sendMessage(msg);
+						}
+					}.start();	
 				}
-
 			}
 		});
+		hd=new Handler(){
+			public void handleMessage(Message msg) {
+				super.handleMessage(msg);
+				Bundle b;
+				b=msg.getData();
+				int msgStr=b.getInt("msg");
+				if(msgStr==200){
+				mad = new MyAlertDialog(WantActivity.this);
+				mad.setMessage(R.string.zhuming5);
+				mad.setTitle("项目发起成功");
+				donationOpenDate.setText("请选择");
+				donationRaiseGoods.setSelection(0);
+				donationBackMoney.setText("");
+				donationTitle.setText("");
+				donationDetail.setText("");
+				}
+			};
+		};
 
 	}
+	String[] proj = { MediaColumns.DATA };
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == SELECT_IMAGE_RESULT_CODE && resultCode == RESULT_OK) {
+			String imagePath = "";
+			Uri uri = null;
+			if (data != null && data.getData() != null) {// 有数据返回直接使用返回的图片地址
+				uri = data.getData();
+				Cursor cursor = getContentResolver().query(uri, proj, null,
+						null, null);
+				if (cursor == null) {
+					uri = ImageUtils.getUri(this, data);
+				}
+				imagePath = ImageUtils.getFilePathByFileUri(this, uri);
+			} else {// 无数据使用指定的图片路径
+				imagePath = mImagePath;
+			}
+			dataList.addFirst(imagePath);
+			adapter.update(dataList); // 刷新图片
+			files.put(imagePath.toString(), new File(imagePath));
+		}
+	}
+	private OnItemLongClickListener mItemLongClick = new OnItemLongClickListener() {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			if (parent.getItemAtPosition(position) != null) { // 长按删除
+				dataList.remove(parent.getItemAtPosition(position));
+				adapter.update(dataList); // 刷新图片
+			}
+			return true;
+		}
+	};
+	private OnItemClickListener mItemClick = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			if (parent.getItemAtPosition(position) == null) { // 添加图片
+				// showPictureDailog();//Dialog形式
+				showPicturePopupWindow("Want");// PopupWindow形式
+			}
+		}
+	};
 
 	public static Donation getWant() {
 		return donation;
 	}
-
-	public void Init() {
-		pop = new PopupWindow(this);
-
-		View view = getLayoutInflater().inflate(R.layout.item_popupwindows,
-				null);
-
-		ll_popup = (LinearLayout) view.findViewById(R.id.ll_popup);
-
-		pop.setWidth(LayoutParams.MATCH_PARENT);
-		pop.setHeight(LayoutParams.WRAP_CONTENT);
-		pop.setBackgroundDrawable(new BitmapDrawable());
-		pop.setFocusable(true);
-		pop.setOutsideTouchable(true);
-		pop.setContentView(view);
-
-		RelativeLayout parent = (RelativeLayout) view.findViewById(R.id.parent);
-		Button bt1 = (Button) view.findViewById(R.id.item_popupwindows_camera);
-		Button bt2 = (Button) view.findViewById(R.id.item_popupwindows_Photo);
-		Button bt3 = (Button) view.findViewById(R.id.item_popupwindows_cancel);
-		parent.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt1.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				photo();
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt2.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(WantActivity.this,
-						AlbumActivity.class);
-				intent.putExtra("jiemian", "Want");
-				startActivity(intent);
-				overridePendingTransition(R.anim.push_bottom_in,
-						R.anim.push_buttom_out);
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt3.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-	}
-
-	private static final int TAKE_PICTURE = 0x000001;
-
-	public void photo() {
-		Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(openCameraIntent, TAKE_PICTURE);
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		case TAKE_PICTURE:
-			if (aa.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {
-
-				String fileName = String.valueOf(System.currentTimeMillis());
-				Bitmap bm = (Bitmap) data.getExtras().get("data");
-				FileUtils.saveBitmap(bm, fileName);
-
-				ImageItem takePhoto = new ImageItem();
-				takePhoto.setBitmap(bm);
-				try {
-					aa.tempSelectBitmap.add(FileUtils.createSDDir(fileName)
-							.toString());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			break;
-		}
-	}
-
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-			for (int i = 0; i < PublicWay.activityList.size(); i++) {
-				if (null != PublicWay.activityList.get(i)) {
-					PublicWay.activityList.get(i).finish();
-				}
-				aa.tempSelectBitmap.clear();
-				edit = sp.edit();
-				edit.clear();
-				edit.commit();
-			}
-
-		}
-		return true;
-	}
-
-	public String getString(String s) {
-		String path = null;
-		if (s == null)
-			return "";
-		for (int i = s.length() - 1; i > 0; i++) {
-			s.charAt(i);
-		}
-		return path;
-	}
-
-	protected void onRestart() {
-		gridadapter.update();
-		super.onRestart();
-	}
-
 	public void backonClick(View v) {
 		// TODO Auto-generated method stub
 		finish();
-		aa.tempSelectBitmap.clear();
-		edit = sp.edit();
-		edit.clear();
-		edit.commit();
 	}
 
 	public void begintime(View v) {

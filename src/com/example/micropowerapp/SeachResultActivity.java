@@ -38,7 +38,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 	private ListView listViewResult;
 
 	private String content;
-	private List<ChoiceProjects> mircoloveSeachProjectsDatas;// Êı¾İ
+	private List<ChoiceProjects> mircoloveSeachProjectsDatas;// æ•°æ®
 	private List<DonationProjects> needDonationSeachProjectsDatas;
 	private List<DonationProjects> donationSeachProjectsDatas;
 	private List<Projects> witnessSeachProjectDatas;
@@ -48,7 +48,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 	private ArrayList<Integer> donArr;
 	private ArrayList<Integer> witArr;
 
-	private ChoiceProjectsAdapter mircoloveProjectsAdapter;// ÉÏÃælistview³Ğ¶ÔÓ¦µÄÊÊÅäÆ÷
+	private ChoiceProjectsAdapter mircoloveProjectsAdapter;// ä¸Šé¢listviewæ‰€å¯¹åº”çš„é€‚é…å™¨
 	private WitnessProjectsAdapter witnessProjectsAdapter;
 	private DonationProjectsAdapter needDonationProjectsAdapter;
 	private DonationProjectsAdapter donationProjectsAdapter;
@@ -143,7 +143,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 			listViewResult.setAdapter(mircoloveProjectsAdapter);
 			textFlagAgain = 5;
 			if (mircoloveSeachProjectsDatas.size() == 0)
-				Toast.makeText(getApplicationContext(), "Ã»ÓĞ¸ü¶àĞÅÏ¢~~~",
+				Toast.makeText(getApplicationContext(), "æ²¡æœ‰æ›´å¤šä¿¡æ¯~~~",
 						Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.index_activity_seach_result_text_need_don:
@@ -155,7 +155,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 			listViewResult.setAdapter(needDonationProjectsAdapter);
 			textFlagAgain = 6;
 			if (needDonationSeachProjectsDatas.size() == 0)
-				Toast.makeText(getApplicationContext(), "Ã»ÓĞ¸ü¶àĞÅÏ¢~~~",
+				Toast.makeText(getApplicationContext(), "æ²¡æœ‰æ›´å¤šä¿¡æ¯~~~",
 						Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.index_activity_seach_result_text_don:
@@ -167,7 +167,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 			listViewResult.setAdapter(donationProjectsAdapter);
 			textFlagAgain = 7;
 			if (donationSeachProjectsDatas.size() == 0)
-				Toast.makeText(getApplicationContext(), "Ã»ÓĞ¸ü¶àĞÅÏ¢~~~",
+				Toast.makeText(getApplicationContext(), "æ²¡æœ‰æ›´å¤šä¿¡æ¯~~~",
 						Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.index_activity_seach_result_text_witness:
@@ -179,7 +179,7 @@ public class SeachResultActivity extends Activity implements OnClickListener {
 			listViewResult.setAdapter(witnessProjectsAdapter);
 			textFlagAgain = 8;
 			if (witnessSeachProjectDatas.size() == 0)
-				Toast.makeText(getApplicationContext(), "Ã»ÓĞ¸ü¶àĞÅÏ¢~~~",
+				Toast.makeText(getApplicationContext(), "æ²¡æœ‰æ›´å¤šä¿¡æ¯~~~",
 						Toast.LENGTH_SHORT).show();
 			break;
 		}

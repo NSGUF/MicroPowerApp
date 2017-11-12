@@ -165,8 +165,8 @@ public class IndexProjectDescripActivity extends Activity implements
 		textTA = (TextView) this.findViewById(R.id.index_project_descrip_TA);
 		textBottom = (TextView) this
 				.findViewById(R.id.index_project_descrip_txt_btm);
-		layoutPar = (LinearLayout) this
-				.findViewById(R.id.index_project_describe_activity_progressBar);
+//		layoutPar = (LinearLayout) this
+//				.findViewById(R.id.index_project_describe_activity_progressBar);
 	}
 
 	private void initEvent() {
@@ -187,7 +187,7 @@ public class IndexProjectDescripActivity extends Activity implements
 					// intent.putExtra("user_id", "user_id");
 					startActivity(intent);
 				} else if (flagHelpOrCri == 2) {
-					// 评论
+					// 鐠囧嫯顔�
 					LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 					View layout = inflater.inflate(
 							R.layout.index_comment_dialog, null);
@@ -215,7 +215,7 @@ public class IndexProjectDescripActivity extends Activity implements
 			public void onClick(View arg0) {
 				Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+				intent.putExtra(Intent.EXTRA_SUBJECT, "閸掑棔闊�");
 				intent.putExtra(Intent.EXTRA_TEXT, link);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(Intent.createChooser(intent, getTitle()));
@@ -254,7 +254,7 @@ public class IndexProjectDescripActivity extends Activity implements
 			}
 			params.put("from_user_id", "USER_ID0");
 
-			CommentContent project = new CommentContent("", "", 0, "", "小孩",
+			CommentContent project = new CommentContent("", "", 0, "", "鐏忓繐顒�",
 					"http://localhost:8080/MicroPower/upload/photo1.jpg", "",
 					0, "", "", "USER_ID0", "USER_ID0", comment.getText()
 							.toString(), new Date().toString(), 0);
@@ -268,14 +268,14 @@ public class IndexProjectDescripActivity extends Activity implements
 						@Override
 						public void run() {
 							if (msgStr.equals("success")) {
-								Toast.makeText(getApplicationContext(), "评论成功",
+								Toast.makeText(getApplicationContext(), "鐠囧嫯顔戦幋鎰",
 										Toast.LENGTH_SHORT).show();
 								commentAdapter.notifyDataSetChanged();
 								setHight();
 								dialog.dismiss();
 							} else {
 								Toast.makeText(getApplicationContext(),
-										"评论失败，请重新评论", Toast.LENGTH_SHORT)
+										"鐠囧嫯顔戞径杈Е閿涘矁顕柌宥嗘煀鐠囧嫯顔�", Toast.LENGTH_SHORT)
 										.show();
 								Log.d("test", msgStr);
 							}
@@ -284,12 +284,13 @@ public class IndexProjectDescripActivity extends Activity implements
 				}
 			}.start();
 		} else {
-			Toast.makeText(getApplicationContext(), "请输入", Toast.LENGTH_SHORT)
+			Toast.makeText(getApplicationContext(), "鐠囩柉绶崗锟�", Toast.LENGTH_SHORT)
 					.show();
 		}
 	}
 
 	private void setView() {
+
 		asyncBitmapLoader = new AsyncBitmapLoader();
 
 		Intent intent = getIntent();
@@ -388,13 +389,13 @@ public class IndexProjectDescripActivity extends Activity implements
 			} else {
 				imgHead.setImageBitmap(bitmap);
 			}
-			textHelp.setText("评论TA");
+			textHelp.setText("鐠囧嫯顔慣A");
 			textUserName.setText(donationProjects.getUserName());
 			textTime.setText(donationProjects.getTime());
 			textTitle.setText(donationProjects.getListTitle());
 			textContent.setText(donationProjects.getListDescrip());
 			layoutMoney.setVisibility(View.GONE);
-			textTA.setText("TA的评论");
+			textTA.setText("TA閻ㄥ嫯鐦庣拋锟�");
 			ArrayList<String> photos = donationProjects.getListImage();
 			int heightCount = 0;
 			if (photos.size() % 3 == 0) {
@@ -429,13 +430,13 @@ public class IndexProjectDescripActivity extends Activity implements
 			} else {
 				imgHead.setImageBitmap(bitmap);
 			}
-			textHelp.setText("评论TA");
+			textHelp.setText("鐠囧嫯顔慣A");
 			textUserName.setText(projects.getUserName());
 			textTime.setText(projects.getTime());
 			textTitle.setText(projects.getListTitle());
 			textContent.setText(projects.getListDescrip());
 			layoutMoney.setVisibility(View.GONE);
-			textTA.setText("TA的评论");
+			textTA.setText("TA閻ㄥ嫯鐦庣拋锟�");
 			ArrayList<String> photos = projects.getListImage();
 			int heightCount = 0;
 			if (photos.size() % 3 == 0) {
@@ -457,6 +458,7 @@ public class IndexProjectDescripActivity extends Activity implements
 			initWitnessCommentNum();
 			flagHelpOrCri = 2;
 		}
+
 
 	}
 
@@ -608,7 +610,7 @@ public class IndexProjectDescripActivity extends Activity implements
 					contentDatas, false);
 			listHelp.setAdapter(commentAdapter);
 			if (contentDatas.size() == 0) {
-				Toast.makeText(getApplicationContext(), "无更多",
+				Toast.makeText(getApplicationContext(), "閺冪姵娲挎径锟�",
 						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
@@ -688,16 +690,16 @@ public class IndexProjectDescripActivity extends Activity implements
 	// int desiredWidth = MeasureSpec.makeMeasureSpec(listHelp.getWidth(),
 	// MeasureSpec.AT_MOST);
 	// item.measure(desiredWidth, 0);
-	// h = item.getMeasuredHeight();// 得到listview中单独一个item的高度
+	// h = item.getMeasuredHeight();// 瀵版鍩宭istview娑擃厼宕熼悪顑跨娑撶導tem閻ㄥ嫰鐝惔锟�
 	// } catch (Exception e) {
-	// Log.d("test", "没有高度");
+	// Log.d("test", "濞屸剝婀佹妯哄");
 	// }
 	// if (scrollY >= ((contentDatas.size() - 1) * h - commentTop)
 	// && flagChangeData == false) {
 	// flagChangeData = true;
 	// last.setVisibility(View.VISIBLE);
 	// Log.d("testdibu", "ok");
-	// textBottom.setText("正在加载~~~");
+	// textBottom.setText("濮濓絽婀崝鐘烘祰~~~");
 	// layoutPar.setVisibility(View.VISIBLE);
 	// new Thread() {
 	// public void run() {
@@ -714,7 +716,7 @@ public class IndexProjectDescripActivity extends Activity implements
 	// Log.d("testflag1", String.valueOf(String
 	// .valueOf(contentDatas.size())));
 	// layoutComment.setLayoutParams(ps);
-	// textBottom.setText("加载完成~~~");
+	// textBottom.setText("閸旂姾娴囩�瑰本鍨殈~~");
 	// flag = true;
 	// try {
 	// Thread.sleep(3000);
@@ -748,9 +750,9 @@ public class IndexProjectDescripActivity extends Activity implements
 			int desiredWidth = MeasureSpec.makeMeasureSpec(listHelp.getWidth(),
 					MeasureSpec.AT_MOST);
 			item.measure(desiredWidth, 0);
-			h = item.getMeasuredHeight();// 得到listview中单独一个item的高度
+			h = item.getMeasuredHeight();// 瀵版鍩宭istview娑擃厼宕熼悪顑跨娑撶導tem閻ㄥ嫰鐝惔锟�
 		} catch (Exception e) {
-			Log.d("test", "没有高度");
+			Log.d("test", "濞屸剝婀佹妯哄");
 		}
 		if (scrollY >= (contentDatas.size() * h - commentTop)) {
 			last.setVisibility(View.VISIBLE);
@@ -800,7 +802,7 @@ public class IndexProjectDescripActivity extends Activity implements
 	private void changeData() {
 		final Map<String, String> params = new HashMap<String, String>();
 		params.put("parame1", "changeData");
-		new Thread() { // 寮?鍚嚎绋?
+		new Thread() { // 鐎碉拷?闁告凹鍨抽崵搴ｇ矙?
 			public void run() {
 				final String msgStr = HttpUploadUtil.postWithoutFile(
 						changeDataUrl, params);

@@ -82,9 +82,9 @@ public class MyPhotoAdapter extends BaseAdapter {
 		}
 		holder = (ViewHolder) convertView.getTag();
 
+		
 		// ImageLoader.getInstance().displayImage(datas.get(position),
 		// holder.img);
-
 		bitmap = asyncBitmapLoader.loadBitmap(holder.img, datas.get(position),
 				new ImageCallBack() {
 					@Override
@@ -97,13 +97,11 @@ public class MyPhotoAdapter extends BaseAdapter {
 		} else {
 			holder.img.setImageBitmap(bitmap);
 		}
-
 		holder.img.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(context, ShowImageActivity.class);
 				intent.putExtra("tag", v.getTag().toString());
-				Log.d("testPhoto", v.getTag().toString());
 				Bundle b = new Bundle();
 				b.putSerializable("list_img", (Serializable) datasOri);
 				intent.putExtras(b);

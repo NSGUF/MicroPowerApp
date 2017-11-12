@@ -87,7 +87,7 @@ public class DoHelpActivity extends Activity implements OnClickListener {
 					resetBg();
 					contentEditOther
 							.setBackgroundResource(R.drawable.choice_shape);
-					textNeedDonation.setText("£¤0.00");
+					textNeedDonation.setText("ï¿½ï¿½0.00");
 				}
 			}
 		});
@@ -96,11 +96,11 @@ public class DoHelpActivity extends Activity implements OnClickListener {
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
 				if (editOther.getText().toString().equals("")) {
-					textNeedDonation.setText("£¤0.00");
+					textNeedDonation.setText("ï¿½ï¿½0.00");
 				} else {
 					if (Double.parseDouble(editOther.getText().toString()) > 2000) {
 						if (count == 0) {
-							Toast.makeText(getApplicationContext(), "²»ÄÜ³¬¹ý2000",
+							Toast.makeText(getApplicationContext(), "ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½2000",
 									Toast.LENGTH_LONG).show();
 							count++;
 						}
@@ -120,7 +120,7 @@ public class DoHelpActivity extends Activity implements OnClickListener {
 								.length());
 					} else {
 						DecimalFormat df = new DecimalFormat("#.00");
-						textNeedDonation.setText("£¤"
+						textNeedDonation.setText("ï¿½ï¿½"
 								+ df.format(Double.parseDouble(editOther
 										.getText().toString())));
 					}
@@ -145,22 +145,22 @@ public class DoHelpActivity extends Activity implements OnClickListener {
 		case R.id.index_activity_do_help_one:
 			resetBg();
 			textOne.setBackgroundResource(R.drawable.choice_shape);
-			textNeedDonation.setText("£¤1.00");
+			textNeedDonation.setText("ï¿½ï¿½1.00");
 			break;
 		case R.id.index_activity_do_help_three:
 			resetBg();
 			textThree.setBackgroundResource(R.drawable.choice_shape);
-			textNeedDonation.setText("£¤3.00");
+			textNeedDonation.setText("ï¿½ï¿½3.00");
 			break;
 		case R.id.index_activity_do_help_five:
 			resetBg();
 			textFive.setBackgroundResource(R.drawable.choice_shape);
-			textNeedDonation.setText("£¤5.00");
+			textNeedDonation.setText("ï¿½ï¿½5.00");
 			break;
 		case R.id.index_activity_do_help_ten:
 			resetBg();
 			textTen.setBackgroundResource(R.drawable.choice_shape);
-			textNeedDonation.setText("£¤10.00");
+			textNeedDonation.setText("ï¿½ï¿½10.00");
 			break;
 		case R.id.index_activity_do_help_img_back:
 			finish();
@@ -197,11 +197,11 @@ public class DoHelpActivity extends Activity implements OnClickListener {
 					public void run() {
 						if (msgStr.equals("success")) {
 							finish();
-							Toast.makeText(getApplicationContext(), "°ïÖú³É¹¦",
+							Toast.makeText(getApplicationContext(), "ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½",
 									Toast.LENGTH_SHORT).show();
 						} else {
 							Toast.makeText(getApplicationContext(),
-									"°ïÖúÊ§°Ü£¬ÇëÖØÐÂ°ïÖú", Toast.LENGTH_SHORT).show();
+									"ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½", Toast.LENGTH_SHORT).show();
 							Log.d("test", msgStr);
 						}
 					}

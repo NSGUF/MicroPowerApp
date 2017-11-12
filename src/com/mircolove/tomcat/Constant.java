@@ -3,10 +3,10 @@ package com.mircolove.tomcat;
 public class Constant {
 	public static final int LOGINVIEW = 0;// �޸�EditText������
 	public static final int CHANGE_EDIT2 = 1;
-	// public static final String aURL="http://192.168.1.106:8080/StudentWeb";
-	public static final String aURL = "http://192.168.1.108:8080/MicroPower";
+	public static final String bURL = "http://192.168.43.117:8080/MicroPower";
+	public static final String aURL = "http://192.168.43.117:8080/MicroPower";
 	public static final String SDLOACTION = "/mnt/sdcard/mircolove/";
-	public static final String LOCALHOST = "192.168.1.108";
+	public static final String LOCALHOST = "192.168.43.117";
 	public static final int MAINVIEW = 2;
 	public static final int KFVIEW = 3;
 	public static final int RESOURCEDETAIL = 4;
@@ -22,8 +22,10 @@ public class Constant {
 	public static final int WORKERDETAIL = 13;
 	public static final int WORKERMODIFY = 103;
 	public static final int WORKERDELETE = 16;
-	public static final int ADDSTU = 20;
-
+	public static final int ADDHELP = 20;
+	public static final int ADDWANT = 19;
+	public static final int ADDSEEK = 18;
+	public static final int ADDSHARE = 17;
 	public static final int DATE_INPUT_DIALOG = 0;
 	public static final int DATE_INPUT_DIALOG_1 = 2;
 	public static final int EXIT_DIALOG = 4;

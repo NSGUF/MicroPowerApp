@@ -36,6 +36,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
@@ -82,6 +83,7 @@ import com.example.micropowerapp.utils.HttpUtils;
 import com.launch.bean.Launch;
 import com.mine.bean.CircleImageView;
 import com.mircolove.tomcat.Constant;
+import com.mircolove.tomcat.HttpAcessNetUtil;
 import com.mircolove.tomcat.HttpUploadUtil;
 
 public class MainActivity extends Activity implements
@@ -94,6 +96,9 @@ public class MainActivity extends Activity implements
 	private String donationUrl = Constant.aURL + "/DonationList.action";
 	private String witnessUrl = Constant.aURL + "/WitnessList.action";
 	private String viewpagerUrl = Constant.aURL + "/ViewPager.action";
+	
+	private String userpetUrl = Constant.aURL + "/UserPet.action";
+	
 	Handler handlerSelectMircolove = new Handler();
 	Handler handlerMircolove = new Handler();
 	Handler handlerDonation = new Handler();
@@ -104,11 +109,11 @@ public class MainActivity extends Activity implements
 	private JSONArray arrayDonation = new JSONArray();
 	private JSONArray arrayWitness = new JSONArray();
 
-	private int h = 0;// 每个item的高度
+	private int h = 0;// 每个item的高庿
 
 	private long exitTime = 0;
-	private EditText indexEditSeach;// 主页搜索编辑框
-	private EditText indexNull;// 占据焦点的编辑框，在主页上是没有显示出来
+	private EditText indexEditSeach;// 主页搜索编辑桿
+	private EditText indexNull;// 占据焦点的编辑框，在主页上是没有显示出来皿
 								// index_activity_seach_null;
 	private TextView indexTextChoice, indexTextHelpKids, indexTextDonation,
 			indexTextWitness;// 悬浮框中的四个textview
@@ -126,7 +131,7 @@ public class MainActivity extends Activity implements
 	ListView projectsListView;// ,helpProjectsListView,
 	// donationProjectsListView, witnessProjectsListView;
 
-	ChoiceProjectsAdapter mircoloveProjectsAdapter;// 上面listview承对应的适配器
+	ChoiceProjectsAdapter mircoloveProjectsAdapter;// 上面listview承对应的?配噿
 	WitnessProjectsAdapter witnessProjectsAdapter;
 	DonationProjectsAdapter donationProjectsAdapter;
 	ChoiceProjectsAdapter choiceProjectsAdapter;
@@ -141,7 +146,7 @@ public class MainActivity extends Activity implements
 	private Button mSendMsg;
 	private Handler mHandler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			// 等待接收，子线程完成数据的返回
+			// 等待接收，子线程完成数据的返囿
 			ChatMessage fromMessge = (ChatMessage) msg.obj;
 			mDatas.add(fromMessge);
 			mAdapter.notifyDataSetChanged();
@@ -151,21 +156,21 @@ public class MainActivity extends Activity implements
 	};
 
 	private ViewPager viewPager;// 下面是显示图片滑动的
-	private LinearLayout point_group;// 为添加滑动图片下面的小点点
+	private LinearLayout point_group;// 为添加滑动图片下面的小点炿
 	private List<View> views;
 	private FixedSpeedScroller mScroller = null;
 	protected int lastPosition;
 	private JSONArray advertiseArray;
-	// 是否弿启自动循环
+	// 是否弿启自动循玿
 	private boolean isRunning;
 	/**
-	 * 自动循环的实现策略：1、定时器timer 2、开启子线程，while true循环 3、使用handler方式发送延时消息，实现循环
+	 * 自动循环的实现策略：1、定时器timer 2、开启子线程，while true循环 3、使用handler方式发?延时消息，实现循环
 	 */
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			// viewPager滑动到下一页
+			// viewPager滑动到下丿顿
 			viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-			// 发送一个延时消息,延时2秒钟继续执行handler，达到循环的效果
+			// 发?一个延时消恿,延时2秒钟继续执行handler，达到循环的效果
 			if (isRunning) {
 				handler.sendEmptyMessageDelayed(0, 3000);
 			}
@@ -193,6 +198,7 @@ public class MainActivity extends Activity implements
 	private String[] titles;
 	private String[] introductions;
 	private int[] images;
+
 	// 冰荣部分
 	private ImageView iv_mine_set;
 	private ImageButton ib_mine_left;
@@ -205,17 +211,19 @@ public class MainActivity extends Activity implements
 	private Bitmap head;// 头像Bitmap
 	private static String PATH = "/sdcard/myHead/";// sd路径
 	private TextView mine_tv_nicheng, mine_tv_phone;
+	private String UserPetName;
+	private String minePhone;
 	private RelativeLayout mine_rl_launch, mine_rl_donate, mine_rl_hand,
 			mine_rl_share, mine_rl_help, mine_rl_wallet, mine_rl_advice,
 			mine_rl_bank, mine_rl_volunteer, mine_rl_twocode;
-
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
-		// 得到屏幕的宽高
+		// 得到屏幕的长宿
 		DisplayMetrics dm = getResources().getDisplayMetrics();
 		SCREEN_WIDTH = dm.widthPixels;
 		SCREEN_HEIGHT = dm.heightPixels;
@@ -228,7 +236,7 @@ public class MainActivity extends Activity implements
 		initMine();
 		// 弿启自动循玿
 		isRunning = true;
-		// 发送延时消息，达到轮播广告的效果
+		// 发?延时消息，达到轮播广告的效枿
 		handler.sendEmptyMessageDelayed(0, 2000);
 
 		timer.schedule(new TimerTask() {
@@ -241,12 +249,12 @@ public class MainActivity extends Activity implements
 				initJSONArrayFour();
 				Log.d("testTimer", "数据更新");
 			}
-		}, 500, 1000 * 60 * 5);// 0.5秒之后，每隔2秒做一次run()操作
+		}, 500, 1000 * 60 * 5);// 0.5秒之后，每隔2秒做丿次run()操作
 	}
 
 	// 初始化TabHost
 	private void initTab() {
-		mTabHost = (TabHost) findViewById(R.id.tabhost);// 下面底部
+		mTabHost = (TabHost) findViewById(R.id.tabhost);// 朿下面底部
 		mTabHost.setup();
 
 		LayoutInflater inflater_tab1 = LayoutInflater.from(this);
@@ -281,7 +289,7 @@ public class MainActivity extends Activity implements
 
 	// 初始化显示的项目的数捿
 	private void initProjectDatas() {
-		initViewPagerDatas();
+		initViewPagerDatas();// 鍒濆鍖栨粦鍔ㄥ浘鐗囩殑url
 		// initSource(advertiseArray, true);
 		choiceProjectsDatas = new ArrayList<ChoiceProjects>();
 		mircoloveProjectsDatas = new ArrayList<ChoiceProjects>();
@@ -316,11 +324,10 @@ public class MainActivity extends Activity implements
 	private void initJSONArrayOne() {
 		final Map<String, String> params = new HashMap<String, String>();
 		params.put("parame1", "selectmircolove");
-		new Thread() {
+		new Thread() { 
 			public void run() {
 				final String msgStr = HttpUploadUtil.postWithoutFile(
 						mircoloveUrl, params);
-				// Log.d("testSelect", msgStr);
 				handlerSelectMircolove.post(new Runnable() {
 					@Override
 					public void run() {
@@ -339,6 +346,7 @@ public class MainActivity extends Activity implements
 	private void initProjectDatesOne() {
 		try {
 			int length = choiceProjectsDatas.size();
+
 			for (int i = length; i <= length + 10; i++)
 				if (choiceProjectsDatas.size() < arrayChoice.length()) {
 					JSONObject json = arrayChoice.getJSONObject(i);
@@ -373,8 +381,6 @@ public class MainActivity extends Activity implements
 							json.getInt("mircolove_list_select"),
 							json.getInt("mircolove_list_support_time"),
 							json.getInt("mircolove_divid_num"));
-
-					Log.d("testID", json.getString("mircolove_id"));
 					choiceProjectsDatas.add(project);
 				}
 			choiceProjectsAdapter = new ChoiceProjectsAdapter(
@@ -392,13 +398,13 @@ public class MainActivity extends Activity implements
 			public void run() {
 				final String msgStr = HttpUploadUtil.postWithoutFile(
 						mircoloveUrl, params);
-				// Log.d("testMircolove", msgStr);
 				handlerMircolove.post(new Runnable() {
 					@Override
 					public void run() {
 						try {
 							arrayMircolove = new JSONArray(msgStr);
 							initProjectDatesTwo();
+							Log.d("tag", "运行到了初始化Microlove的数据");
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
@@ -411,7 +417,7 @@ public class MainActivity extends Activity implements
 	private void initProjectDatesTwo() {
 		try {
 			int length = mircoloveProjectsDatas.size();
-			for (int i = length; i <= length + 10; i++)
+			for (int i = length; i <= length+10; i++){
 				if (mircoloveProjectsDatas.size() < arrayMircolove.length()) {
 					JSONObject json = arrayMircolove.getJSONObject(i);
 					String images = json.getString("mircolove_list_image");
@@ -428,27 +434,12 @@ public class MainActivity extends Activity implements
 						listMinImage.add(imagesArr[j].replace("localhost",
 								Constant.LOCALHOST));
 					}
-					ChoiceProjects project = new ChoiceProjects(
-							json.getString("mircolove_id"),
-							json.getString("user_id"),
-							json.getString("user_head"),
-							json.getString("user_name"),
-							json.getString("mircolove_open_date"),
-							json.getString("mircolove_list_title"),
-							json.getString("mircolove_list_describe"),
-							listImage, listMinImage,
-							json.getString("mircolove_list_addr"),
-							json.getInt("mircolove_verify_state"),
-							json.getInt("is_delete"),
-							json.getInt("mircolove_target_amount"),
-							json.getInt("mircolove_raise_amount"),
-							json.getInt("mircolove_list_select"),
-							json.getInt("mircolove_list_support_time"),
-							json.getInt("mircolove_divid_num"));
-					mircoloveProjectsDatas.add(project);
+					ChoiceProjects project = new ChoiceProjects(json.getString("mircolove_id"),json.getString("user_id"),json.getString("user_head"),json.getString("user_name"),json.getString("mircolove_open_date"),json.getString("mircolove_list_title"),json.getString("mircolove_list_describe"),listImage, listMinImage,json.getString("mircolove_list_addr"),json.getInt("mircolove_verify_state"),json.getInt("is_delete"),json.getInt("mircolove_target_amount"),json.getInt("mircolove_raise_amount"),json.getInt("mircolove_list_select"),json.getInt("mircolove_list_support_time"),json.getInt("mircolove_divid_num"));
+					mircoloveProjectsDatas.add(project);	 
 				}
+			}
 		} catch (Exception e) {
-			// Log.d("testMirTwo", e.toString());
+			 Log.d("testMirTwo", e.toString());
 		}
 	}
 
@@ -579,7 +570,7 @@ public class MainActivity extends Activity implements
 	private void initViewPagerDatas() {
 		// final Map<String, String> params = new HashMap<String, String>();
 		// params.put("parame1", "viewpager_images");
-		// new Thread() {
+		// new Thread() { // 寮?鍚嚎绋?
 		// public void run() {
 		// final String msgStr = HttpUploadUtil.postWithoutFile(
 		// viewpagerUrl, params);
@@ -597,29 +588,30 @@ public class MainActivity extends Activity implements
 		// }
 		// });
 		// }
-		// }.start();
+		// }.start();鐨勫浘鐗囪祫婧濉rray
 		advertiseArray = new JSONArray();
 		try {
 			JSONObject advertise0 = new JSONObject();
 			advertise0
 					.putOpt("viewpager_images",
-							"http://localhost:8080/MicroPower/upload/viewpager/viewpager1.jpg");
+							"http://192.168.1.109:8080/MicroPower/upload/viewpager/viewpager1.jpg");
+			Log.d("尴尬", "尴尬尴尬");
 			JSONObject advertise1 = new JSONObject();
 			advertise1
 					.putOpt("viewpager_images",
-							"http://localhost:8080/MicroPower/upload/viewpager/viewpager2.jpg");
+							"http://192.168.1.109:8080/MicroPower/upload/viewpager/viewpager2.jpg");
 			JSONObject advertise2 = new JSONObject();
 			advertise2
 					.putOpt("viewpager_images",
-							"http://localhost:8080/MicroPower/upload/viewpager/viewpager3.jpg");
+							"http://192.168.1.109:8080/MicroPower/upload/viewpager/viewpager3.jpg");
 			JSONObject advertise3 = new JSONObject();
 			advertise3
 					.putOpt("viewpager_images",
-							"http://localhost:8080/MicroPower/upload/viewpager/viewpager4.jpg");
+							"http://192.168.1.109:8080/MicroPower/upload/viewpager/viewpager4.jpg");
 			JSONObject advertise4 = new JSONObject();
 			advertise4
 					.putOpt("viewpager_images",
-							"http://localhost:8080/MicroPower/upload/viewpager/viewpager5.jpg");
+							"http://192.168.1.109:8080/MicroPower/upload/viewpager/viewpager5.jpg");
 			advertiseArray.put(advertise0);
 			advertiseArray.put(advertise1);
 			advertiseArray.put(advertise2);
@@ -631,6 +623,7 @@ public class MainActivity extends Activity implements
 		}
 	}
 
+	// 璁剧疆鏃堕棿鐩戝惿
 	private void initEvent() {
 		indexTextChoice.setOnClickListener(this);
 		indexTextHelpKids.setOnClickListener(this);
@@ -642,7 +635,7 @@ public class MainActivity extends Activity implements
 			public void onClick(View v) {
 				final String toMsg = mInputMsg.getText().toString();
 				if (TextUtils.isEmpty(toMsg)) {
-					Toast.makeText(MainActivity.this, "不能为空，请重新输入",
+					Toast.makeText(MainActivity.this, "鍙戦?佹秷鎭笉鑳戒负绌猴紒",
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -674,7 +667,7 @@ public class MainActivity extends Activity implements
 					@Override
 					public void onFocusChange(View v, boolean hasFocus) {
 						if (flagGo == true) {
-							if (hasFocus) {
+							if (hasFocus) {// 鑾峰緱鐒︾偣
 								Intent intent = new Intent(
 										getApplicationContext(),
 										SeachActivity.class);
@@ -686,6 +679,7 @@ public class MainActivity extends Activity implements
 				});
 	}
 
+	// 鍒濆鍖栧悇涓獀iew瀵硅薿
 	private void initView() {
 		indexEditSeach = (EditText) findViewById(R.id.index_edit_seach);
 		indexNull = (EditText) findViewById(R.id.index_seach_null);
@@ -720,6 +714,7 @@ public class MainActivity extends Activity implements
 		textBottom = (TextView) this.findViewById(R.id.index_text_bottom);
 	}
 
+	// 閲嶅啓鐐瑰嚮浜嬩欿
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -727,6 +722,7 @@ public class MainActivity extends Activity implements
 			resetImg();
 			indexTextChoice.setBackgroundResource(R.drawable.my_btn_shape);
 			indexTextChoice.setTextColor(Color.WHITE);
+			initJSONArrayOne();
 			choiceProjectsAdapter = new ChoiceProjectsAdapter(
 					getApplicationContext(), choiceProjectsDatas);
 			projectsListView.setAdapter(choiceProjectsAdapter);
@@ -736,6 +732,7 @@ public class MainActivity extends Activity implements
 			resetImg();
 			indexTextHelpKids.setBackgroundResource(R.drawable.my_btn_shape);
 			indexTextHelpKids.setTextColor(Color.WHITE);
+			initJSONArrayTwo();
 			mircoloveProjectsAdapter = new ChoiceProjectsAdapter(
 					getApplicationContext(), mircoloveProjectsDatas);
 			projectsListView.setAdapter(mircoloveProjectsAdapter);
@@ -745,6 +742,7 @@ public class MainActivity extends Activity implements
 			resetImg();
 			indexTextDonation.setBackgroundResource(R.drawable.my_btn_shape);
 			indexTextDonation.setTextColor(Color.WHITE);
+			initJSONArrayThree();
 			donationProjectsAdapter = new DonationProjectsAdapter(
 					getApplicationContext(), donationProjectsDatas);
 			projectsListView.setAdapter(donationProjectsAdapter);
@@ -754,6 +752,7 @@ public class MainActivity extends Activity implements
 			resetImg();
 			indexTextWitness.setBackgroundResource(R.drawable.my_btn_shape);
 			indexTextWitness.setTextColor(Color.WHITE);
+			initJSONArrayFour();
 			witnessProjectsAdapter = new WitnessProjectsAdapter(
 					getApplicationContext(), witnessProjectDatas);
 			projectsListView.setAdapter(witnessProjectsAdapter);
@@ -778,6 +777,7 @@ public class MainActivity extends Activity implements
 		});
 	}
 
+	// 璁剧疆viewpager鐨勯珮搴︼紝褰撴偓娴鍒伴《閮ㄦ椂锛屽皢listview鏄剧ず鍒版渶涓婇潿
 	private void setViewPagerHeight() {
 		if (flagTwo == false) {
 			myScrollView.scrollTo(0, listviewLayoutTop - 60);
@@ -836,6 +836,7 @@ public class MainActivity extends Activity implements
 		guideStartProject.setBackgroundResource(R.drawable.startone);
 	}
 
+	// 鍏抽棴杞敭鐩?
 	@SuppressLint("NewApi")
 	private void hintKb() {
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -847,6 +848,7 @@ public class MainActivity extends Activity implements
 		}
 	}
 
+	// 灏嗘偓娴涓殑鍥涗釜textview閮忟缃负鐧借壊
 	private void resetImg() {
 		indexTextChoice.setTextColor(Color.BLACK);
 		indexTextHelpKids.setTextColor(Color.BLACK);
@@ -858,6 +860,7 @@ public class MainActivity extends Activity implements
 		indexTextWitness.setBackgroundColor(Color.WHITE);
 	}
 
+	// 鐀?互鎺у埗杞祦婊戝姩鍥剧墖鐨勯?熷宿
 	private void controlViewPagerSpeed() {
 		try {
 			Field mField;
@@ -902,6 +905,9 @@ public class MainActivity extends Activity implements
 			}
 			point_group.addView(point);
 		}
+		/*if (ActivityCompat.checkSelfPermission(getActivity（）, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {  
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);  
+        }  */
 		AdvertiseAdapter adapter = new AdvertiseAdapter(views, advertiseArray);
 		viewPager.setAdapter(adapter);
 		controlViewPagerSpeed();
@@ -972,6 +978,7 @@ public class MainActivity extends Activity implements
 			h = item.getMeasuredHeight();// 寰楀埌listview涓崟鐙竴涓猧tem鐨勯珮搴?
 		} catch (Exception e) {
 		}
+		// Log.d("testH", String.valueOf(h));
 		if (scrollY >= searchLayoutTop) {
 			if (allBarDeacrip.getParent() != allTopBar) {
 				allBar.removeView(allBarDeacrip);
@@ -983,10 +990,13 @@ public class MainActivity extends Activity implements
 				allTopBar.removeView(allBarDeacrip);
 				allBar.addView(allBarDeacrip);
 				flagTwo = true;
-			}
+			}  
 		}
+		//
+		// if (scrollY >= (getCount() * h - listviewLayoutTop)) {
 		layoutBottom.setVisibility(View.VISIBLE);
 		textBottom.setText("正在加载~~~");
+		// Log.d("testdibu", "ok");
 		new Thread() {
 			public void run() {
 				try {
@@ -1031,6 +1041,18 @@ public class MainActivity extends Activity implements
 				});
 			};
 		}.start();
+		// }
+		// if (flag == false) {
+		// // Log.d("testflag", "true");
+		// LayoutParams ps = indexViewProjects.getLayoutParams();
+		// ps.height = getCount() * h + 40;
+		// // Log.d("testflag",
+		// // String.valueOf(String.valueOf(getCount())));
+		// indexViewProjects.setLayoutParams(ps);
+		// flag = true;
+		// }
+		// Log.d("test1", String.valueOf(flag));
+		// Log.d("test2", String.valueOf(flagTwo));
 	}
 
 	@Override
@@ -1044,7 +1066,7 @@ public class MainActivity extends Activity implements
 
 	public void exit() {
 		if ((System.currentTimeMillis() - exitTime) > 2000) {
-			Toast.makeText(getApplicationContext(), "再按一次退出程序",
+			Toast.makeText(getApplicationContext(), "再按丿次?出程庿",
 					Toast.LENGTH_SHORT).show();
 			exitTime = System.currentTimeMillis();
 		} else {
@@ -1054,6 +1076,7 @@ public class MainActivity extends Activity implements
 	}
 
 	private void initLaunch() {
+	    
 		titles = getResources().getStringArray(R.array.title);
 		introductions = getResources().getStringArray(R.array.introduction);
 		TypedArray t = getResources().obtainTypedArray(R.array.image);
@@ -1072,6 +1095,7 @@ public class MainActivity extends Activity implements
 		adapter = new LaunchAdapter(MainActivity.this,
 				R.layout.launch_item_layout, list);
 		launch_list.setAdapter(adapter);
+		 final String iPhoneID=getIntent().getStringExtra("iphone");
 
 		launch_list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -1080,25 +1104,45 @@ public class MainActivity extends Activity implements
 					int position, long id) {
 				switch (position) {
 				case 0:
-					Intent intent = new Intent(getApplicationContext(),
-							HelpActivity.class);
-					startActivity(intent);
+					if(iPhoneID==null){
+						Toast.makeText(MainActivity.this, "请先登录", 0).show();
+					}else{
+						Intent intent = new Intent(getApplicationContext(),
+								HelpActivity.class);
+						intent.putExtra("iphoneID", iPhoneID);
+						startActivity(intent);
+					}
 
 					break;
 				case 1:
+					if(iPhoneID==null){
+						Toast.makeText(MainActivity.this, "请先登录", 0).show();
+					}else{
 					Intent intent1 = new Intent(MainActivity.this,
 							WantActivity.class);
+					intent1.putExtra("iphoneID", iPhoneID);
 					startActivity(intent1);
+					}
 					break;
 				case 2:
+					if(iPhoneID==null){
+						Toast.makeText(MainActivity.this, "请先登录", 0).show();
+					}else{
 					Intent intent2 = new Intent(MainActivity.this,
 							SeekActivity.class);
+					intent2.putExtra("iphoneID", iPhoneID);
 					startActivity(intent2);
+					}
 					break;
 				case 3:
+					if(iPhoneID==null){
+						Toast.makeText(MainActivity.this, "请先登录", 0).show();
+					}else{
 					Intent intent3 = new Intent(MainActivity.this,
 							ShareActivity.class);
+					intent3.putExtra("iphoneID", iPhoneID);
 					startActivity(intent3);
+					}
 					break;
 
 				default:
@@ -1124,7 +1168,11 @@ public class MainActivity extends Activity implements
 		// mine_rl_addr = (RelativeLayout) findViewById(R.id.mine_rl_addr);
 		mine_iv_headimg = (CircleImageView) findViewById(R.id.mine_iv_headimg);
 		mine_tv_nicheng = (TextView) findViewById(R.id.mine_tv_nicheng);
-
+		mine_tv_phone=(TextView)findViewById(R.id.mine_tv_phone);
+        String iPhone=getIntent().getStringExtra("iphone");
+        String petName=getIntent().getStringExtra("petName");
+        mine_tv_nicheng.setText(petName);
+        mine_tv_phone.setText(iPhone);
 		iv_mine_set.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -1233,9 +1281,9 @@ public class MainActivity extends Activity implements
 		});
 		mine_tv_nicheng.setOnClickListener(new View.OnClickListener() {
 
-			@SuppressLint("InflateParams")
 			@Override
 			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				AlertDialog alerDialog;
 				AlertDialog.Builder ad = new AlertDialog.Builder(
 						MainActivity.this);
@@ -1248,10 +1296,10 @@ public class MainActivity extends Activity implements
 				ad.setPositiveButton("确定",
 						new DialogInterface.OnClickListener() {
 
-							@SuppressLint("ShowToast")
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
+								// TODO Auto-generated method stub
 								if (TextUtils.isEmpty(user_et_name.getText())) {
 									Toast.makeText(getApplicationContext(),
 											"用户名不能为空！", 0).show();
@@ -1259,26 +1307,47 @@ public class MainActivity extends Activity implements
 									String name = user_et_name.getText()
 											.toString();
 									mine_tv_nicheng.setText(name);
+									final Map<String, String> params = new HashMap<String, String>();
+									UserPetName= mine_tv_nicheng.getText().toString().trim();
+									minePhone= mine_tv_phone.getText().toString().trim();
+									params.put("petName",UserPetName);
+									params.put("minePhone",minePhone);
+									new Thread() {
+										public void run() {
+											String msgStr = null;
+											try {
+												msgStr = HttpAcessNetUtil.postWithParams(userpetUrl, params);
+											Log.i("msgStr", msgStr);
+											} catch (Exception e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+										}
+									}.start();
 								}
+								
 							}
-						});
+							
+						}
+				);
+				
 				ad.setNegativeButton("取消", null);
 				alerDialog = ad.create();
 				alerDialog.show();
-
+				
 			}
 
 		});
 
 		mine_iv_headimg.setOnClickListener(new OnClickListener() {
-			@SuppressLint("InflateParams")
 			@Override
 			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				LayoutInflater layoutinflater = (LayoutInflater) MainActivity.this
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				View menuView = layoutinflater.inflate(
 						R.layout.mine_setmessage_chooseheadimg, null);
-				// 实例化对像
+				// 实例化对�?
 				menuWindow = new MenuPopWindow(MainActivity.this, menuView,
 						listener);
 				// 设置位置
@@ -1291,6 +1360,7 @@ public class MainActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				menuWindow.dismiss();
 				switch (v.getId()) {
 				case R.id.btn_images:
@@ -1320,7 +1390,7 @@ public class MainActivity extends Activity implements
 			mine_iv_headimg.setImageDrawable(drawable);
 		} else {
 			/**
-			 * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD
+			 * 如果SD里面没有则需要从服务器取头像，取回来的头像再保存在SD�?
 			 * 
 			 */
 		}
@@ -1341,7 +1411,8 @@ public class MainActivity extends Activity implements
 
 				@Override
 				public void onClick(View v) {
-					// 弹出框
+					// TODO Auto-generated method stub
+					// �?毁弹出框�?
 					dismiss();
 				}
 			});
@@ -1381,9 +1452,10 @@ public class MainActivity extends Activity implements
 				head = extras.getParcelable("data");
 				if (head != null) {
 					/**
-					 * 上传服务器代
+					 * 上传服务器代�?
 					 */
 					setPicToView(head);// 保存在SD卡中
+					// TODO head有问�?
 					mine_iv_headimg.setImageBitmap(head);// 用iv_mysetmsg_headimg显示出来
 				}
 			}
@@ -1407,7 +1479,7 @@ public class MainActivity extends Activity implements
 		// aspectX aspectY 是宽高的比例
 		intent.putExtra("aspectX", 1);
 		intent.putExtra("aspectY", 1);
-		// outputX outputY 是裁剪图片宽
+		// outputX outputY 是裁剪图片宽�?
 		intent.putExtra("outputX", 120);
 		intent.putExtra("outputY", 10);
 		intent.putExtra("return-data", true);
@@ -1416,22 +1488,22 @@ public class MainActivity extends Activity implements
 
 	private void setPicToView(Bitmap mBitmap) {
 		String sdStatus = Environment.getExternalStorageState();
-		if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {// 测sd是否可用
+		if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {// �?测sd是否可用
 			return;
 		}
 		FileOutputStream b = null;
 		File file = new File(PATH);
-		file.mkdirs();// 创建文件
+		file.mkdirs();// 创建文件�?
 		String fileName = PATH + "head.jpg";// 图片名字
 		try {
 			b = new FileOutputStream(fileName);
-			mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文
+			mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文�?
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// 关闭
+				// 关闭�?
 				b.flush();
 				b.close();
 			} catch (IOException e) {

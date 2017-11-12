@@ -34,24 +34,16 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.king.photo.util.FileUtils;
-import com.king.photo.util.ImageItem;
-import com.king.photo.util.PublicWay;
-import com.king.photo.util.Res;
-import com.launch.bean.GridAdapter;
 import com.launch.bean.MyAlertDialog;
 
 public class Report extends Activity {
 	private GridView gridview;
-	private GridAdapter gridadapter;
 	public static Bitmap bimap;
 	private View parentView;
 	private PopupWindow pop;
 	private LinearLayout ll_popup;
 	private TextView tv;
 	private MyAlertDialog mad;
-	private AlbumActivity aa;
 	private EditText edit_name;
 	private EditText edit_num;
 	private EditText edit_reason;
@@ -63,15 +55,8 @@ public class Report extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_report);
-
-		Res.init(this);
 		bimap = BitmapFactory.decodeResource(getResources(),
 				R.drawable.icon_addpic_unfocused);
-		PublicWay.activityList.add(this);
-		parentView = getLayoutInflater()
-				.inflate(R.layout.activity_report, null);
-		setContentView(parentView);
-		Init();
 		edit_name = (EditText) findViewById(R.id.report_edit);
 		edit_num = (EditText) findViewById(R.id.report_num);
 		edit_reason = (EditText) findViewById(R.id.report_text);
@@ -153,123 +138,6 @@ public class Report extends Activity {
 		MyAlertDialog ad = new MyAlertDialog(Report.this);
 		ad.setTitle("举报项目提示");
 		ad.setMessage(R.string.zhuming6);
-		gridview = (GridView) findViewById(R.id.report_gridview);
-		gridview.setSelector(new ColorDrawable(Color.TRANSPARENT));
-		gridadapter = new GridAdapter(this, gridview);
-		gridadapter.update();
-		gridview.setAdapter(gridadapter);
-		gridview.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				if (arg2 == aa.tempSelectBitmap.size()) {
-					ll_popup.startAnimation(AnimationUtils.loadAnimation(
-							Report.this, R.anim.push_bottom_in));
-					pop.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-				} else {
-					Intent intent = new Intent(Report.this,
-							GalleryActivity.class);
-					intent.putExtra("position", "1");
-					intent.putExtra("ID", arg2);
-					startActivity(intent);
-				}
-			}
-		});
-	}
-
-	public void Init() {
-		pop = new PopupWindow(this);
-
-		View view = getLayoutInflater().inflate(R.layout.item_popupwindows,
-				null);
-
-		ll_popup = (LinearLayout) view.findViewById(R.id.ll_popup);
-
-		pop.setWidth(LayoutParams.MATCH_PARENT);
-		pop.setHeight(LayoutParams.WRAP_CONTENT);
-		pop.setBackgroundDrawable(new BitmapDrawable());
-		pop.setFocusable(true);
-		pop.setOutsideTouchable(true);
-		pop.setContentView(view);
-
-		RelativeLayout parent = (RelativeLayout) view.findViewById(R.id.parent);
-		Button bt1 = (Button) view.findViewById(R.id.item_popupwindows_camera);
-		Button bt2 = (Button) view.findViewById(R.id.item_popupwindows_Photo);
-		Button bt3 = (Button) view.findViewById(R.id.item_popupwindows_cancel);
-		parent.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt1.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				photo();
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt2.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(Report.this, AlbumActivity.class);
-				startActivity(intent);
-				overridePendingTransition(R.anim.push_bottom_in,
-						R.anim.push_buttom_out);
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-		bt3.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				pop.dismiss();
-				ll_popup.clearAnimation();
-			}
-		});
-	}
-
-	private static final int TAKE_PICTURE = 0x000001;
-
-	public void photo() {
-		Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(openCameraIntent, TAKE_PICTURE);
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (requestCode) {
-		case TAKE_PICTURE:
-			if (aa.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {
-
-				String fileName = String.valueOf(System.currentTimeMillis());
-				Bitmap bm = (Bitmap) data.getExtras().get("data");
-				FileUtils.saveBitmap(bm, fileName);
-
-				ImageItem takePhoto = new ImageItem();
-				takePhoto.setBitmap(bm);
-				try {
-					aa.tempSelectBitmap.add(FileUtils.createSDDir(fileName)
-							.toString());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			break;
-		}
-	}
-
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			for (int i = 0; i < PublicWay.activityList.size(); i++) {
-				if (null != PublicWay.activityList.get(i)) {
-					PublicWay.activityList.get(i).finish();
-				}
-			}
-			System.exit(0);
-		}
-		return true;
 	}
 
 	public String getString(String s) {
@@ -280,17 +148,6 @@ public class Report extends Activity {
 			s.charAt(i);
 		}
 		return path;
-	}
-
-	protected void onRestart() {
-		gridadapter.update();
-		super.onRestart();
-	}
-
-	public void back(View v) {
-		// TODO Auto-generated method stub
-		Report.this.finish();
-		aa.tempSelectBitmap.clear();
 	}
 
 }

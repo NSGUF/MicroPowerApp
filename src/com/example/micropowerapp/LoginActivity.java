@@ -1,6 +1,14 @@
 package com.example.micropowerapp;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONObject;
+
+import com.mircolove.tomcat.Constant;
+import com.mircolove.tomcat.HttpAcessNetUtil;
+
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import android.app.Activity;
@@ -9,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -23,13 +32,17 @@ import android.widget.Toast;
 public class LoginActivity extends Activity implements OnClickListener {
 	private EditText login_et_userphone, login_et_shortmessage_code;
 	private Button login_btn,login_btn_shortmessage_getcode;
-	private String iPhone;
+	private String iPhone="";
+	private String petName;
 	private String iCord;
 	private int time = 60;
 	private boolean flag = true;
 	private String APPKEY = "19c490799ce90";
 	private String APPSECRET = "4b95d65b3359b1f4766a26246e384b6f";
-
+	Handler hand;
+	private String url = Constant.aURL + "/LoginAction";
+	private String reurl = Constant.aURL + "/SettingServlet";
+	String json;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,6 +87,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					iPhone = login_et_userphone.getText().toString().trim();
 					SMSSDK.getVerificationCode("86", iPhone);
 					login_et_shortmessage_code.requestFocus();
+					
 				} else {
 					Toast.makeText(LoginActivity.this,
 							"请输入完整电话号码", Toast.LENGTH_LONG).show();
@@ -90,13 +104,42 @@ public class LoginActivity extends Activity implements OnClickListener {
 			if (!TextUtils.isEmpty(login_et_shortmessage_code.getText().toString()
 					.trim())) {
 				if (login_et_shortmessage_code.getText().toString().trim().length() == 4) {
-					iCord = login_et_shortmessage_code.getText().toString().trim();
-					SMSSDK.submitVerificationCode("86", iPhone, iCord);
+					//iCord = login_et_shortmessage_code.getText().toString().trim();
+					//SMSSDK.submitVerificationCode("86", iPhone, iCord);
 					flag = false;
-					Intent intent = new Intent();
-					intent.setClass(LoginActivity.this,MainActivity.class);
-					startActivity(intent);
-					finish();
+					
+					
+					final Map<String, String> params = new HashMap<String, String>();
+					iPhone = login_et_userphone.getText().toString().trim();
+					System.out.print(iPhone);
+					params.put("tellphone",iPhone);
+					params.put("flag", "getInfo");
+					new Thread() {
+						public void run() {
+							try {
+								//HttpAcessNetUtil.postWithParams(url, params);
+								//Log.d("testLogin",params.toString());
+								/*json=HttpAcessNetUtil.postWithParams(reurl, params);
+								JSONObject obj=new JSONObject(json);
+							    petName=obj.getString("petName");
+							    String head=obj.getString("head");*/
+							    Intent intent = new Intent();
+							    petName="15279194818";
+							    iPhone="15279194818";
+								intent.setClass(LoginActivity.this,MainActivity.class);
+								intent.putExtra("iphone", iPhone);
+								intent.putExtra("petName", petName);
+								//intent.putExtra("head", head);
+								startActivity(intent);
+								finish();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}.start();
+					
+					
 				} else {
 					Toast.makeText(LoginActivity.this,
 							"请输入完整验证码", Toast.LENGTH_LONG).show();
@@ -110,11 +153,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 			break;
 
 		default:
-			break;
+			
+		break;
 		}
 	}
 
-	// ��֤���ͳɹ�����ʾ����
 	private void reminderText() {
 		login_btn.setVisibility(View.VISIBLE);
 		handlerText.sendEmptyMessageDelayed(1, 1000);
@@ -158,6 +201,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					handlerText.sendEmptyMessage(2);
 				} else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {// ��������֤�뷢�ͳɹ�
 					reminderText();
+					
 					Toast.makeText(getApplicationContext(), "验证码已经发送",
 							Toast.LENGTH_SHORT).show();
 				} else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {// ����֧�ַ�����֤��Ĺ����б�

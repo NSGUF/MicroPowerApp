@@ -293,22 +293,6 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/index_project_describe_activity_progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#26ffffff"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="invisible" >
-
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
-        </LinearLayout>
     </FrameLayout>
 
 </RelativeLayout>

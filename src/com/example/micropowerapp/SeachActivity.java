@@ -25,8 +25,8 @@ public class SeachActivity extends Activity {
 	private GridView gridSeach;
 
 	private MyGridSeachAdapter seachAdapter;
-	private String[] datas = { "Éú»î·Ñ", "Êé", "ÒÂ·ş", "Íæ¾ß", "ÊÖ»ú", "ÀÏÈË»ú", "É½Çø",
-			"½­Î÷", "¹óÖİ", "¹ãÎ÷" };
+	private String[] datas = { "ç”Ÿæ´»è´¹", "ä¹¦", "è¡£æœ", "ç©å…·", "æ‰‹æœº", "è€äººæœº", "å±±åŒº",
+			"æ±Ÿè¥¿", "è´µå·", "å¹¿è¥¿" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class SeachActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (editSeach.getText().toString().equals("")) {
-					Toast.makeText(getApplicationContext(), "ÇëÊäÈë",
+					Toast.makeText(getApplicationContext(), "è¯·è¾“å…¥",
 							Toast.LENGTH_SHORT).show();
 				} else {
 					Intent intent = new Intent(SeachActivity.this,

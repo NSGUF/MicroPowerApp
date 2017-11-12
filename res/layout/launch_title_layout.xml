@@ -8,14 +8,14 @@
 
          <ImageView
              android:id="@+id/launch_image_back"
-             android:layout_width="60dp"
-             android:layout_height="60dp"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
              android:layout_alignParentLeft="true"
              android:layout_centerVertical="true"
-             android:layout_margin="5dp"
-             android:paddingLeft="5dp"
+             android:layout_margin="4dp"
+             android:paddingLeft="4dp"
              android:onClick="backonClick"
-             android:src="@drawable/launch_title_back" />
+             android:src="@drawable/back_index" />
 
          <TextView
              android:id="@+id/all_title_tv"

@@ -53,7 +53,6 @@ public class AsyncBitmapLoader {
 						break;
 					}
 				}
-				// Log.d("test", "21");
 				if (i < cacheFiles.length) {
 					return BitmapFactory.decodeFile(Constant.SDLOACTION
 							+ bitmapName);
@@ -88,7 +87,6 @@ public class AsyncBitmapLoader {
 				imageCache.put(imageURL, new SoftReference<Bitmap>(bitmap));
 				Message msg = handler.obtainMessage(0, bitmap);
 				handler.sendMessage(msg);
-
 				File dir = new File(Constant.SDLOACTION);
 				if (!dir.exists()) {
 					dir.mkdirs();
@@ -113,8 +111,6 @@ public class AsyncBitmapLoader {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
-				// Log.d("test", "3");
 			}
 		}.start();
 		return null;

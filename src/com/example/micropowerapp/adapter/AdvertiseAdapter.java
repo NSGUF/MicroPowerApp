@@ -50,10 +50,15 @@ public class AdvertiseAdapter extends PagerAdapter {
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		((ViewPager) container).removeView(views.get(position % views.size()));
 	}
+	
+	
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		((ViewPager) container).addView(views.get(position % views.size()));
+		
+		
+		
 		View view = views.get(position % views.size());
 		// ��ȡͼƬurl�ĵ�ַ
 		String imageUrl = advertiseArray.optJSONObject(position % views.size())
@@ -70,6 +75,7 @@ public class AdvertiseAdapter extends PagerAdapter {
 					}
 				});
 		if (bitmap == null) {
+			Log.d("test","null");
 			ivAdvertise.setImageResource(R.drawable.ic_launcher);
 		} else {
 			ivAdvertise.setImageBitmap(bitmap);

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class ChoiceProjectsAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+
 		if (convertView == null) {
 			LayoutInflater li = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -107,6 +109,7 @@ public class ChoiceProjectsAdapter extends BaseAdapter {
 			holder.imgUserHead.setImageBitmap(bitmap);
 		}
 		// holder.imgUserHead.setImageResource(projects.getUserHead());
+		
 		holder.textUserName.setText(projects.getUserName());
 		holder.textTime.setText(projects.getTime());
 		holder.textHelpNum.setText(String.valueOf(projects.getSupportTime()));
@@ -123,7 +126,13 @@ public class ChoiceProjectsAdapter extends BaseAdapter {
 		holder.textTime.setText(projects.getTime());
 
 		ArrayList<String> photos = projects.getListImage();
+		for(int i=0;i<photos.size();i++){
+			Log.e("Choice photos的值： ", photos.get(i));
+		}
 		ArrayList<String> minPhotos = projects.getListMinImage();
+		for(int i=0;i<minPhotos.size();i++){
+			Log.e("Choice photos的值： ", minPhotos.get(i));
+		}
 		MyPhotoAdapter photoAdapter = new MyPhotoAdapter(context, photos,
 				minPhotos);
 		holder.gridListImage.setAdapter(photoAdapter);

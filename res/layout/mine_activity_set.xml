@@ -196,7 +196,7 @@
             android:background="@drawable/login_shape"
             android:layout_marginBottom="50dp"
             android:layout_alignParentBottom="true"
-            android:text="退出登录"
+            android:text="登录"
             android:textSize="20dp" />
     </RelativeLayout>
 

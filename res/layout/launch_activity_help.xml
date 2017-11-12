@@ -1,248 +1,255 @@
-<ScrollView
-     xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/help_scrollview2"
-    android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#F5F6F7"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <include layout="@layout/launch_title_layout" />
-
-    <TextView
-        android:layout_width="wrap_content"	
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="8dp"
-        android:text="项目信息"
-        android:textSize="14dp"
-        android:textColor="#888888" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/background_help"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:id="@+id/help_layout_endtime"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:paddingLeft="9dp"
-            android:paddingRight="9dp" >
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="50dp"
-                android:layout_height="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignTop="@+id/launch_text_endtime"
-                android:layout_toLeftOf="@+id/launch_text_endtime"
-                android:background="@null"
-                android:layout_centerVertical="true"
-                android:entries="@array/spingarr" />
-
-            <TextView
-                android:id="@+id/launch_text_endtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/textView1"
-                android:text="个月"
-                android:layout_centerVertical="true"
-                android:textSize="13dp" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="助力期长"
-                android:textSize="15dp" />
-
-        </RelativeLayout>
-
-                <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:layout_marginTop="3dp"
-            android:background="#E6E6E6" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="9dp"
-            android:layout_marginRight="9dp"
-            android:focusable="true"  
-   android:focusableInTouchMode="true" >
-
-            <TextView
-                android:id="@+id/textview_yuan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="元"
-                android:layout_centerVertical="true"
-                android:textSize="13dp" />
-
-            <EditText
-                android:id="@+id/launch_edit_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/textview_yuan"
-                android:background="@null"
-                android:ems="4"
-                android:maxLength="4"
-                android:paddingLeft="18dp"
-                android:textColor="#CDCDCE"
-                android:textColorHint="#CDCDCE"
-                android:layout_centerVertical="true"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/textview_jine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="助力总金额"
-                android:layout_centerVertical="true"
-                android:textSize="15dp" />
-            
-
-        </RelativeLayout>
-    </LinearLayout>
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:text="项目详情"
-                android:textSize="14dp"
-        android:textColor="#888888" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/background_help"
-        android:orientation="vertical"
- >
+        android:background="#F5F6F7"
+        android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/launch_help_edit_title"
+        <include layout="@layout/launch_title_layout" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:singleLine="true"
-            android:textColorHint="#CDCDCE"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="9dp" />
-                <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:text="项目信息"
+            android:textColor="#888888"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_help"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/help_layout_endtime"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp" >
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="50dp"
+                    android:layout_height="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignTop="@+id/launch_text_endtime"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/launch_text_endtime"
+                    android:background="@null"
+                    android:entries="@array/spingarr" />
+
+                <TextView
+                    android:id="@+id/launch_text_endtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textView1"
+                    android:layout_centerVertical="true"
+                    android:text="个月"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="助力期长"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginTop="3dp"
+                android:background="#E6E6E6" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <TextView
+                    android:id="@+id/textview_yuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="元"
+                    android:textSize="13dp" />
+
+                <EditText
+                    android:id="@+id/launch_edit_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/textview_yuan"
+                    android:background="@null"
+                    android:ems="4"
+                    android:maxLength="4"
+                    android:paddingLeft="18dp"
+                    android:textColor="#CDCDCE"
+                    android:textColorHint="#CDCDCE"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/textview_jine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="助力总金额"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:text="项目详情"
+            android:textColor="#888888"
+            android:textSize="14dp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#E6E6E6" />
-        <com.example.micropowerapp.bean.MyLinearLayout
-            android:id="@+id/help_scrollview1"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scrollbarStyle="outsideOverlay" >
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_help"
+            android:orientation="vertical" >
+
             <EditText
-                android:id="@+id/launch_help_edit_context"
+                android:id="@+id/launch_help_edit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingBottom="5dp"
+                android:paddingLeft="9dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColorHint="#CDCDCE" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#E6E6E6" />
+
+            <com.example.micropowerapp.bean.MyLinearLayout
+                android:id="@+id/help_scrollview1"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scrollbarStyle="outsideOverlay" >
+
+                <EditText
+                    android:id="@+id/launch_help_edit_context"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:paddingLeft="9dp"
+                    android:textColorHint="#CDCDCE" />
+            </com.example.micropowerapp.bean.MyLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#E6E6E6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/zhuming"
+                android:textColor="#888888"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#E6E6E6" />
+
+           <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-            android:background="@null"
-            android:gravity="top"
-                android:textColorHint="#CDCDCE"
-                android:paddingLeft="9dp" />
-        </com.example.micropowerapp.bean.MyLinearLayout>
-                <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#E6E6E6" />
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/zhuming"
-                android:textSize="14dp"
-        android:textColor="#888888" />
-                        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#E6E6E6" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:text="上传图片"
-            android:textColor="#888888"
-            android:textSize="12dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical" >
 
-        <GridView
-            android:id="@+id/noScrollgridview"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:horizontalSpacing="3dp"
-            android:numColumns="3"
-            android:scrollbars="none"
-            android:verticalSpacing="5dp"
-            android:stretchMode="columnWidth" >
-        </GridView>
-                              <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#E6E6E6" />  
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/zhuming2"
-                android:textSize="12dp"
-        android:textColor="#888888" />
-                        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#E6E6E6" />
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            >
-            <ImageView 
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/launch_logo_yes"
-                />
-            <TextView 
-                android:id="@+id/launch_help_mustread"
-                android:layout_height="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="上传图片"
+                    android:textColor="#888888"
+                    android:textSize="12dp" />
+
+                <GridView
+                    android:id="@+id/help_grid_upload_pictures"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:horizontalSpacing="5dp"
+                    android:numColumns="3"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/zhuming2"
+                    android:textColor="#888888"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#E6E6E6" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:text="@string/zhuming3"
-                />
-            </LinearLayout>      
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/launch_logo_yes" />
+
+                <TextView
+                    android:id="@+id/launch_help_mustread"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zhuming3" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
 </ScrollView>
